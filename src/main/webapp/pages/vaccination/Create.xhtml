@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="VaccinationCreateDlg" widgetVar="VaccinationCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.CreateVaccinationTitle}">
+
+            <h:form id="VaccinationCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" >
+
+                          <p:outputLabel value="#{myBundle.CreateVaccinationLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{vaccinationbean.vaccination.nom}" title="#{myBundle.CreateVaccinationTitle_nom}" />
+
+                        
+                        <p:outputLabel value="#{myBundle.CreateVaccinationLabel_dateVac}" for="dateVac" />
+                        <p:calendar id="dateVac" showButtonPanel="true" value="#{vaccinationbean.vaccination.date_vac}" title="#{myBundle.EditVaccinationTitle_dateVac}" navigator="true" showOn="button"/>
+
+                      
+                        <p:outputLabel value="#{myBundle.CreateVaccinationLabel_periodicite}" for="periodicite" />
+                        <p:inputText id="periodicite" value="#{vaccinationbean.vaccination.periodicite}" title="#{myBundle.CreateVaccinationTitle_periodicite}" required="true" requiredMessage="#{myBundle.CreateVaccinationRequiredMessage_periodicite}"/>
+
+                        <p:outputLabel value="Type de poulet:" for="pouleId" />
+                        <p:selectOneMenu id="pouleId" value="#{vaccinationbean.pouleId}" required="true" requiredMessage="#{myBundle.EditVaccinationRequiredMessage_pouleId}" style="width: 82%">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{poulebean.lpoule}"
+                                           var="pouleIdItem"
+                                           itemValue="#{pouleIdItem.id}"
+                                           itemLabel="#{pouleIdItem.type.toString()} #{pouleIdItem.id.toString()}"
+                                           />
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{vaccinationbean.saveVaccination}" value="#{myBundle.Save}" update="display,:VaccinationListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,VaccinationCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="VaccinationCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

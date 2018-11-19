@@ -1,0 +1,137 @@
+
+body {
+
+    /*background: -moz-linear-gradient(#FFF, #AAA);*/
+    background: #c2dfef;
+    /*background: url('../images/fond.png');*/
+    font-size: small;
+    margin: 0px 190px 0px 190px;
+}
+
+#top {
+    background-color: #036fab;
+    color:  white;
+    padding: 0.1px;
+    margin: 10px 0px 0px 0px;
+    border-radius:50px 50px 0px 00px;
+}
+
+#accordion{
+    border-radius:50px 50px 0px 00px;
+}
+
+#bande {
+    background-color: #036fab;
+    color:  white;
+    padding-bottom:30px;
+    font: normal small-caps 130% fantasy  ;
+    margin: 10px 0px 30px 0px;
+    border-radius:50px;
+}
+
+#entete{
+    background-color: white;
+}
+
+#bottom {
+    position: relative;
+    background-color: #c2dfef;
+}
+
+#left {
+    float: left;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 220px;
+}
+
+#right {
+    float: right;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 220px;
+}
+
+#content{
+    position: relative;
+    background-color: #dddddd;
+    margin: 10px 0px 100px 0px;
+}
+
+#stat{
+    margin: 30px 0px 100px 0px;
+}
+
+#datalist{
+    width: 80%;
+    float: left;
+}
+
+
+#print ul ol{ 
+    padding:1%;
+}
+
+#bouton{
+    width: 15%;
+    float: right; 
+}
+#bouton ul ol{
+    width: 10%; 
+    padding:10%;
+}
+
+#login{
+    position: relative;
+    padding: 3px;
+    margin: 80px 200px 260px 200px;
+}
+
+#top a:link, #top a:visited, #bande a:link,  #bande a:visited{
+    color: #036fab;
+    font-weight : bold;
+    text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover{
+    color: black;
+    font-weight : bold;
+    border-radius: 20px 20px 1px 1px;
+}
+
+#top a:active{ 
+    background: #FFCC00 ;
+}
+
+.errorblock {
+    color: #ff0000;
+    background-color: #ffEEEE;
+    border: 3px solid #ff0000;
+    padding: 18px;
+    margin: 16px;
+}
+
+.couleur1{
+    background-color: greenyellow;   
+}
+
+.menuWarning .ui-menuitem-text{
+    color: red;    
+}
+
+.couleur2{
+    background-color: red;   
+}
+
+.edit{
+    background-image: url('../images/modifier.png') !important;
+}
+.delete{
+    background-image: url('../images/delete.png') !important;
+}
+.printer{
+    background-image: url('../images/print.png') !important;
+}
+.export{
+    background-image: url('../images/export.png') !important;
+}

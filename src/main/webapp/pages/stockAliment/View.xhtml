@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="StockAlimentViewDlg" widgetVar="StockAlimentViewDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.ViewStockAlimentTitle}">
+
+            <h:form id="StockAlimentViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{stockAlimentbean.stockAliment != null}">
+
+                        <h:outputText value="#{myBundle.ViewStockAlimentLabel_quantite}"/>
+                        <h:outputText value="#{stockAlimentbean.stockAliment.quantite}" title="#{myBundle.ViewStockAlimentTitle_quantite}"/>
+
+                        <h:outputText value="#{myBundle.ViewStockAlimentLabel_type}"/>
+                        <h:outputText value="#{stockAlimentbean.stockAliment.type}" title="#{myBundle.ViewStockAlimentTitle_type}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="StockAlimentViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

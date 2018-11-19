@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpersonnel" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2baa71ec-d566-48fa-a763-f93fb79e8a39">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="nom" class="java.lang.String"/>
+	<field name="login" class="java.lang.String"/>
+	<field name="statut" class="java.lang.String"/>
+	<field name="prenom" class="java.lang.String"/>
+	<field name="date_payement" class="java.util.Date"/>
+	<field name="nombre_jour" class="java.lang.Integer"/>
+	<field name="sexe" class="java.lang.String"/>
+	<field name="salaire" class="java.lang.Integer"/>
+	<group name="Group1">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group2">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group3">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group4">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="41">
+			<frame>
+				<reportElement mode="Opaque" x="-19" y="-17" width="595" height="48" backcolor="#006699" uuid="218e7c73-81d4-462b-90a4-dbae6f336eb5"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="23" forecolor="#FFFFFF" uuid="77a679a5-79de-4d08-8874-b8c8b7fd461b"/>
+					<textElement>
+						<font size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[PERSONNEL]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="65">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="11" width="183" height="20" uuid="a420010a-90d7-40e9-9b25-1f3bd25fb625"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Liste"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="45" width="71" height="20" uuid="ef05524c-b450-4327-b293-ee51e59790e9"/>
+				<text><![CDATA[NOM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="71" y="45" width="79" height="20" uuid="c4d5b7a2-07a6-4db2-a293-b4e55f2d5d3f"/>
+				<text><![CDATA[PRENOM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="45" width="74" height="20" uuid="e0de0c5a-dc37-4b13-b7a5-2b79dc85adc3"/>
+				<text><![CDATA[LOGIN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="224" y="45" width="69" height="20" uuid="7fd361d7-fa3e-445d-af2c-5143179120c5"/>
+				<text><![CDATA[STAUT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="293" y="45" width="100" height="20" uuid="15a86fa2-3a11-4d5f-9389-8fe82beaa201"/>
+				<text><![CDATA[NOMBRE JOUR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="393" y="45" width="79" height="20" uuid="2677017d-354a-4ea3-97bc-9f445e80a2b4"/>
+				<text><![CDATA[SEXE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="475" y="45" width="80" height="20" uuid="a90b4290-ab1a-4475-bc1f-8f4dc8a178c7"/>
+				<text><![CDATA[SALAIRE]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="24">
+			<textField>
+				<reportElement x="0" y="4" width="71" height="20" uuid="c60b6f86-2cff-4491-9e10-3aa53d214c5e"/>
+				<textFieldExpression><![CDATA[$F{nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="4" width="68" height="20" uuid="4a969c90-1379-4e10-b58d-10f5d6f517be"/>
+				<textFieldExpression><![CDATA[$F{prenom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="4" width="74" height="20" uuid="626228f0-47f2-49a2-a528-19a918da35c6"/>
+				<textFieldExpression><![CDATA[$F{login}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="224" y="4" width="69" height="20" uuid="f17f2c32-d859-41bc-a3a2-b5b3f3a80ec6"/>
+				<textFieldExpression><![CDATA[$F{statut}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="293" y="4" width="100" height="20" uuid="bc05716f-dc8b-48fa-a793-d41637ac24cf"/>
+				<textFieldExpression><![CDATA[$F{nombre_jour}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="396" y="4" width="79" height="20" uuid="0d2aa0c6-6f8f-40fb-bd1c-9811ec85e1d1"/>
+				<textFieldExpression><![CDATA[$F{sexe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="475" y="4" width="80" height="20" uuid="3b9620cd-2d70-499e-b0e8-f99756798a04"/>
+				<textFieldExpression><![CDATA[$F{salaire}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="68">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="0de4f909-833b-4ca2-a9dc-e3c0f0911307"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="9822442a-e466-4015-b7de-324a2d94dbfb"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="e71dd1e9-d4e4-44c5-9699-4739cb143912"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

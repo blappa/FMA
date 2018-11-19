@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="HistoPonteListForm">
+        <div id="datalist">
+            <p:panel header="#{myBundle.ListHistoPonteTitle}">
+
+                <p:dataTable id="datalist" value="#{histoPontebeans.lhistoPonte}" var="item"
+                             selectionMode="single" selection="#{histoPontebeans.h}"
+                             rowKey="#{item.id}"
+                             paginator="true"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30"
+                             emptyMessage="aucun element"
+                             rowIndexVar="index"
+                             >
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="No"/>
+                        </f:facet>
+                        <h:outputText value="#{index+1}"/>
+                    </p:column>
+                    <p:column sortBy="#{item.datePonte}" filterBy="#{item.datePonte}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListHistoPonteTitle_datePonte}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.datePonte}"/>
+                    </p:column>
+                    <p:column sortBy="#{item.quantite}" filterBy="#{item.quantite}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListHistoPonteTitle_quantite}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.quantite}"/>
+                    </p:column>
+                    <p:column sortBy="#{item.poule.type}" filterBy="#{item.poule.type}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListHistoPonteTitle_pouleId}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.poule.type} #{item.poule.id}"/>
+                    </p:column>
+                </p:dataTable>
+
+            </p:panel>
+        </div>
+        <div id="bouton">
+            <ul>
+                <ol><p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}"  oncomplete="HistoPonteCreateDialog.show()"/></ol>
+                <ol> <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":HistoPonteViewForm" oncomplete="HistoPonteViewDialog.show()" disabled="#{empty histoPontebeans.h}"/></ol>
+                <ol> <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":HistoPonteEditForm:display" oncomplete="HistoPonteEditDialog.show()" disabled="#{empty histoPontebeans.h}"/></ol>
+                <ol> <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{histoPontebeans.delete}" update=":growl,datalist" disabled="#{empty histoPontebeans.h}"/></ol>
+            </ul>
+        </div>
+    </h:form>
+
+</ui:composition>

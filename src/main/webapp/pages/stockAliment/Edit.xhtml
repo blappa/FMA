@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="StockAlimentEditDlg" widgetVar="StockAlimentEditDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.EditStockAlimentTitle}">
+
+            <h:form id="StockAlimentEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{stockAlimentbean.stockAliment != null}">
+
+                        <p:outputLabel value="#{myBundle.CreateStockAlimentLabel_quantite}" for="quantite" />
+                        <p:inputText id="quantite" value="#{stockAlimentbean.stockAliment.quantite}" title="#{myBundle.CreateStockAlimentTitle_quantite}" required="true" requiredMessage="#{myBundle.CreateStockAlimentRequiredMessage_quantite}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateStockAlimentLabel_type}" for="type" />
+                         <p:inputText id="type" value="#{stockAlimentbean.stockAliment.type}" required="true" requiredMessage="vous devez entrer le nom de l'aliment" />
+                            
+                         <p:panel visible="false">
+                            <p:inputText id="id" value="#{stockAlimentbean.stockAliment.id}" />
+                        </p:panel>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{stockAlimentbean.updateStockAliment}" value="#{myBundle.Save}" update="display,:StockAlimentListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,StockAlimentEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="StockAlimentEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

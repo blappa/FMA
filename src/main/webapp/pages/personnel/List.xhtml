@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="PersonnelListForm">
+        <div id="datalist">
+            <p:panel header="#{myBundle.ListPersonnelTitle}">
+
+                <p:dataTable id="datalist" value="#{personnelbean.listpersonnel}" var="item" resizableColumns="true"
+                             selectionMode="single" selection="#{personnelbean.personnel}"
+                             rowKey="#{item.id}"
+                             paginator="true"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30"
+                             rowIndexVar="index"
+                             emptyMessage="aucun element"
+                             >
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="No"/>
+                        </f:facet>
+                        <h:outputText value="#{index+1}"/>
+                    </p:column>
+
+                    <p:column sortBy="#{item.nom}" filterBy="#{item.nom}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListPersonnelTitle_nom}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nom}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.prenom}" filterBy="#{item.prenom}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListPersonnelTitle_prenom}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.prenom}"/>
+                    </p:column>
+
+
+                    <p:column sortBy="#{item.statut}" filterBy="#{item.statut}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListPersonnelTitle_statut}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.statut}"/>
+                    </p:column>
+
+                    <p:column sortBy="#{item.sexe}" filterBy="#{item.sexe}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListPersonnelTitle_sexe}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.sexe}"/>
+                    </p:column>
+                    <p:column sortBy="#{item.date_payement}" filterBy="#{item.date_payement}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListPersonnelTitle_datePayement}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.date_payement}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column sortBy="#{item.nombre_jour}" filterBy="#{item.nombre_jour}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListPersonnelTitle_nombreJour}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nombre_jour}"/>
+                    </p:column>
+
+                    <p:column sortBy="#{item.salaire}" filterBy="#{item.salaire}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListPersonnelTitle_salaire}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.salaire}"/>
+                    </p:column>
+                </p:dataTable>
+
+            </p:panel>
+        </div>
+        <div id="bouton">
+            <ul>
+                <ol><p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" oncomplete="PersonnelCreateDialog.show()"/></ol>
+                <ol><p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":PersonnelViewForm" oncomplete="PersonnelViewDialog.show()" disabled="#{empty personnelbean.personnel}"/></ol>
+                <ol> <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":PersonnelEditForm:display" oncomplete="PersonnelEditDialog.show()" disabled="#{empty personnelbean.personnel}"/></ol>
+                <ol> <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{personnelbean.delete}" update=":growl,datalist" disabled="#{empty personnelbean.personnel}"/></ol>
+            </ul>
+        </div>
+    </h:form>
+
+</ui:composition>

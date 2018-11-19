@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="css" name="cssLayout.css"/>
+        <link rel="shortcut icon" type="image/png" href="./resources/images/sigle1.PNG" />
+        <title><ui:insert name="title">Bienvenue</ui:insert></title>
+    </h:head>
+
+    <h:body>
+        <p:growl id="growl" life="3000"/>
+        <p:accordionPanel dynamic="true" >
+            <p:tab title="reduire">
+                <!--                    <div style="font: normal small-caps 200% fantasy  ;" align="center" >APPLICATION DE GESTION DU PERSONNEL ENSEIGNANT  </div>-->
+                <p:graphicImage value="/resources/images/Capture1.PNG" alt="entete"   width="100%" height="90" /> 
+            </p:tab>
+        </p:accordionPanel>
+        <div style="padding-top: 5%">
+            <h:form >
+                <p:panel style="background-color: azure; font: normal small-caps 120% fantasy;">
+                    <h:outputText value="Administrateur"/>
+                </p:panel><br></br><br></br>
+                <table style=" font: normal small-caps 100% fantasy;">
+                    <tr>
+                        <td><p:outputLabel for="nom1"  value="LOGIN :" /></td>
+                        <td><p:inputText id="nom1"  value="#{initBean.current.login}" style="width: 190px;"/></td>
+                    </tr>
+                    <tr>
+                        <td><p:outputLabel for="pwd1"  value="PASSWORD :"/></td>
+                        <td><p:password id="pwd1" required="true" value="#{initBean.current.password}" style="width: 190px;" requiredMessage="Mot de passe obligatoire"/></td>  
+                        <p:message for="pwd1" />
+                        <p:tooltip for="pwd1" value="mot de passe" showEffect="clip" hideEffect="explode" />
+                    </tr>
+                    <tr>
+                        <td style="text-align: right;padding: 30px 0px 0px 20px ">
+                            <p:commandButton  ajax="false" value="Connexion" onclick="submit();"  action="#{initBean.login}"  style=" color: royalblue; text-transform: inherit ">
+                                <f:setPropertyActionListener target="#{initBean.current}" value="#{initBean.current}"/>
+                            </p:commandButton>
+                        </td>
+                    </tr>
+
+                </table>
+            </h:form>
+            <h:form style="text-align: left;padding: 30px 0px 0px 20px ;">
+                <p:panel>
+                    <h:outputText style="font-size: large" value="NB: Cliquez sur ce bouton d'initialisation pour créer pour un début, un compte d'ouverture d'application: le systéme va créer un compte par defaut avec login 'admin' et mot de passe 'admin' modifiable par la suite par l'administrateur     "/>
+                    <p:commandButton  value="Initialisation" actionListener="#{initBean.init}"  update=":growl" oncomplete="form.hide();" style="color: royalblue; text-transform: inherit ;"/>
+                </p:panel>
+            </h:form>
+        </div>
+        <div style="padding-top: 15%">
+            copy right @Bertholot 2014
+        </div>
+    </h:body>
+</html>
+

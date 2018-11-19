@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="VaccinationListForm">
+        <div id="datalist">
+            <p:panel header="#{myBundle.ListVaccinationTitle}">
+
+                <p:dataTable id="datalist" value="#{vaccinationbean.listVaccinations}" var="item"
+                             selectionMode="single" selection="#{vaccinationbean.vaccination}"
+                             rowKey="#{item.id}"
+                             paginator="true"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30"
+                             emptyMessage="aucun element"
+                             rowIndexVar="index"
+                             rowStyleClass="#{vaccinationbean.couleur(item)}"
+                             >
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="No"/>
+                        </f:facet>
+                        <h:outputText value="#{index+1}"/>
+                    </p:column>
+                    <p:column sortBy="#{item.nom}" filterBy="#{item.nom}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListVaccinationTitle_nom}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nom}"/>
+                    </p:column>
+                    <p:column sortBy="#{item.date_vac}" filterBy="#{item.date_vac}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListVaccinationTitle_dateVac}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.date_vac}">
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column sortBy="#{item.periodicite}" filterBy="#{item.periodicite}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListVaccinationTitle_periodicite}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.periodicite}"/>
+                    </p:column>
+
+                    <p:column sortBy="#{item.poule.type}" filterBy="#{item.poule.type}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListVaccinationTitle_pouleId}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.poule.type} #{item.poule.id}"/>
+                    </p:column>
+                </p:dataTable>
+
+            </p:panel>
+        </div>
+        <div id="bouton">
+            <ul>
+                <ol><p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" oncomplete="VaccinationCreateDialog.show()"/></ol>
+                <ol> <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":VaccinationViewForm" oncomplete="VaccinationViewDialog.show()" disabled="#{empty vaccinationbean.vaccination}"/></ol>
+                <ol> <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":VaccinationEditForm:display" oncomplete="VaccinationEditDialog.show()" disabled="#{empty vaccinationbean.vaccination}"/></ol>
+                <ol>  <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{vaccinationbean.delete}" update=":growl,datalist" disabled="#{empty vaccinationbean.vaccination}"/></ol>
+            </ul>
+        </div>
+    </h:form>
+
+</ui:composition>

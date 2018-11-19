@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="HistoAlimentEditDlg" widgetVar="HistoAlimentEditDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.EditHistoAlimentTitle}">
+
+            <h:form id="HistoAlimentEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{histoAlimentbeans.histoAliment != null}">
+
+                        <p:outputLabel value="#{myBundle.CreateHistoAlimentLabel_date}" for="date" />
+                        <p:calendar id="date" pattern="MM/dd/yyyy" value="#{histoAlimentbeans.histoAliment.date}" title="#{myBundle.EditHistoAlimentTitle_date}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateHistoAlimentLabel_quantite}" for="quantite" />
+                        <p:inputText id="quantite" value="#{histoAlimentbeans.histoAliment.quantite}" title="#{myBundle.CreateHistoAlimentTitle_quantite}" required="true" requiredMessage="#{myBundle.CreateHistoAlimentRequiredMessage_quantite}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateHistoAlimentLabel_pouleId}" for="pouleId" style="width: 82%" />
+                        <p:selectOneMenu id="pouleId" value="#{histoAlimentbeans.pouleId}" required="true" requiredMessage="#{myBundle.EditHistoAlimentRequiredMessage_pouleId}" style="width: 82%">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{poulebean.lpoule}"
+                                           var="pouleIdItem"
+                                           itemValue="#{pouleIdItem.id}"
+                                           itemLabel="#{pouleIdItem.type.toString()} #{pouleIdItem.id.toString()}"
+                                           />
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="Type d'aliment" for="stockAlimentid" style="width: 82%" />
+                        <p:selectOneMenu id="stockAlimentid" value="#{histoAlimentbeans.stockAlimentId}" required="true" requiredMessage="#{myBundle.EditHistoAlimentRequiredMessage_stockAlimentid}" style="width: 82%">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{stockAlimentbean.listStockAliment}"
+                                           var="stockAlimentidItem"
+                                           itemValue="#{stockAlimentidItem.id}"
+                                           itemLabel="#{stockAlimentidItem.type.toString()}"
+                                           />
+                        </p:selectOneMenu>
+                         <p:panel visible="false">
+                            <p:inputText id="id" value="#{histoAlimentbeans.histoAliment.id}" />
+                        </p:panel>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{histoAlimentbeans.updateHistoAliment}" value="#{myBundle.Save}" update="display,:HistoAlimentListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,HistoAlimentEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="HistoAlimentEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

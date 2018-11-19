@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rpoules" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2baa71ec-d566-48fa-a763-f93fb79e8a39">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.background.image" value="/home/lappa/NetBeansProjects/jasper/print1/Capture1.PNG"/>
+	<property name="ireport.background.image.properties" value="true,true,0.25,-8,-8,12,124,585,88"/>
+	<subDataset name="dataset1" uuid="c9feb053-2e27-43e3-a737-531d0c1c5f4f"/>
+	<field name="personnel" class="java.lang.Object"/>
+	<field name="quantite" class="java.lang.Integer"/>
+	<field name="debutPonte" class="java.util.Date"/>
+	<field name="daleLancement" class="java.util.Date"/>
+	<field name="type" class="java.lang.String"/>
+	<group name="Group1">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group2">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group3">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="Group4">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="47">
+			<frame>
+				<reportElement mode="Opaque" x="-22" y="-20" width="597" height="49" backcolor="#006699" uuid="218e7c73-81d4-462b-90a4-dbae6f336eb5"/>
+				<staticText>
+					<reportElement x="20" y="20" width="234" height="23" forecolor="#FFFFFF" uuid="77a679a5-79de-4d08-8874-b8c8b7fd461b"/>
+					<textElement>
+						<font size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[POULES]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="65">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="11" width="183" height="20" uuid="a420010a-90d7-40e9-9b25-1f3bd25fb625"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Liste"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="100" y="45" width="100" height="20" uuid="4b7005b4-1296-49ad-8896-cb5eb29a741f"/>
+				<text><![CDATA[QUANTITE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="45" width="100" height="20" uuid="c45f8904-484f-4cfe-96a1-ce24a871056a"/>
+				<text><![CDATA[TYPE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="214" y="45" width="100" height="20" uuid="8286c840-73f2-455a-a416-ef481bd2d6cf"/>
+				<text><![CDATA[DEBUT PONTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="329" y="45" width="100" height="20" uuid="ea6b98ee-9e78-4f53-a1ac-e80cf2127ac6"/>
+				<text><![CDATA[DATE LANCEMENT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="45" width="98" height="20" uuid="2aaaa296-adfd-4a14-b464-c832a7327237"/>
+				<text><![CDATA[PERSONNEL]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band/>
+	</columnHeader>
+	<detail>
+		<band height="33">
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="497760c3-233c-4b28-a0cb-ae06e8e35cbe"/>
+				<textFieldExpression><![CDATA[$F{quantite}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="d8f973e5-9b3d-4cae-8fae-d5859882decf"/>
+				<textFieldExpression><![CDATA[$F{type}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="214" y="0" width="100" height="20" uuid="c2b8cfe5-4848-4260-ac3d-600d5b3a84f6"/>
+				<textFieldExpression><![CDATA[$F{debutPonte}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="329" y="0" width="100" height="20" uuid="912a11d9-1bae-4123-ade2-a35ce581ccc2"/>
+				<textFieldExpression><![CDATA[""+$F{daleLancement}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="d1c33aa4-ecff-4a0b-8161-a472cbe1c9e9"/>
+				<textFieldExpression><![CDATA[$F{personnel}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="68">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="0de4f909-833b-4ca2-a9dc-e3c0f0911307"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" sur"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="9822442a-e466-4015-b7de-324a2d94dbfb"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="e71dd1e9-d4e4-44c5-9699-4739cb143912"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

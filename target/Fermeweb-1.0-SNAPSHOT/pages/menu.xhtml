@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:accordionPanel dynamic="true" >
+            <p:tab title="reduire">
+                <!--                    <div style="font: normal small-caps 200% fantasy  ;" align="center" >APPLICATION DE GESTION DU PERSONNEL ENSEIGNANT  </div>-->
+                <p:graphicImage value="/resources/images/Capture1.PNG" alt="entete"   width="100%" height="90" /> 
+            </p:tab>
+        </p:accordionPanel> 
+        <h:form id="menuForm">
+            <p:menubar>
+                <p:menuitem value="Accueil" outcome="/index" icon="ui-icon-home"/>
+                <p:menuitem value="Personnel" outcome="/pages/personnel/index" />
+                <p:menuitem value="Poule" outcome="/pages/poule/index" />
+                <p:menuitem value="Stock Aliment" styleClass="#{StockAlimentbean.warning()}" outcome="/pages/stockAliment/index" />
+                <p:menuitem value="Stock Ponte" outcome="/pages/stockPonte/index" />
+                <p:menuitem value="Vaccination" outcome="/pages/vaccination/index" />
+                <p:menuitem value="Historique Aliment" outcome="/pages/histoAliment/index" />
+                <p:menuitem value="Historique Ponte" outcome="/pages/histoPonte/index" />
+                <p:menuitem value="Deces" outcome="/pages/deces/index" />
+                <p:submenu label="Statistiques" >
+                    <p:menuitem value="Historique" outcome="/pages/operations/historique/index" />
+                    <p:menuitem value="Impression" outcome="/pages/operations/impression/index" />
+                    <p:menuitem value="Importation" outcome="/pages/operations/importation/index" />
+                </p:submenu>
+            </p:menubar>
+        </h:form>
+    </ui:composition>
+
+</html>

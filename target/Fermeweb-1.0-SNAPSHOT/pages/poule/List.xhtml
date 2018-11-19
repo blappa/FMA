@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="PouleListForm">
+        <div id="datalist">
+            <p:panel header="#{myBundle.ListPouleTitle}">
+
+                <p:dataTable id="datalist" value="#{poulebean.lpoule}" var="item"
+                             selectionMode="single" selection="#{poulebean.pl}"
+                             rowKey="#{item.id}"
+                             paginator="true"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30"
+                             emptyMessage="aucun element"
+                             rowIndexVar="index"
+                             >
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="No"/>
+                        </f:facet>
+                        <h:outputText value="#{index+1}"/>
+                    </p:column>
+                    <p:column sortBy="#{item.daleLancement}" filterBy="#{item.daleLancement}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListPouleTitle_daleLancement}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.daleLancement}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column sortBy="#{item.debutPonte}" filterBy="#{item.debutPonte}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListPouleTitle_debutPonte}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.debutPonte}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column>
+                    <p:column sortBy="#{item.quantite}" filterBy="#{item.quantite}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListPouleTitle_quantite}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.quantite}"/>
+                    </p:column>
+                    <p:column sortBy="#{item.type}" filterBy="#{item.type}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListPouleTitle_type}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.type}"/>
+                    </p:column>
+                    <p:column sortBy="#{item.id}" filterBy="#{item.id}">
+                        <f:facet name="header">
+                            <h:outputText value="Code"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </p:column>
+                    <p:column sortBy="#{item.personnel.nom}" filterBy="#{item.personnel.nom}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListPouleTitle_personnelId}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.personnel.nom} #{item.personnel.prenom} "/>
+                    </p:column>
+                </p:dataTable>
+
+            </p:panel>
+        </div>
+        <div id="bouton">
+            <ul>
+                <ol><p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" oncomplete="PouleCreateDialog.show()"/></ol>
+                <ol> <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":PouleViewForm" oncomplete="PouleViewDialog.show()" disabled="#{empty poulebean.pl}"/></ol>
+                <ol> <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":PouleEditForm:display" oncomplete="PouleEditDialog.show()" disabled="#{empty poulebean.pl}"/></ol>
+                <ol>  <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{poulebean.delete}" update=":growl,datalist" disabled="#{empty poulebean.pl}"/></ol>
+            </ul>
+        </div>
+    </h:form>
+
+</ui:composition>

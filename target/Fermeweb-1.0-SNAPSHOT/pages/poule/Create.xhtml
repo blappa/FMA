@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PouleCreateDlg" widgetVar="PouleCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.CreatePouleTitle}">
+
+            <h:form id="PouleCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+                        <p:outputLabel value="#{myBundle.CreatePouleLabel_daleLancement}" for="daleLancement" />
+                        <p:calendar id="daleLancement" pattern="MM/dd/yyyy" value="#{poulebean.pl.daleLancement}" title="#{myBundle.EditPouleTitle_daleLancement}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreatePouleLabel_debutPonte}" for="debutPonte" />
+                        <p:calendar id="debutPonte" pattern="MM/dd/yyyy" value="#{poulebean.pl.debutPonte}" title="#{myBundle.EditPouleTitle_debutPonte}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreatePouleLabel_quantite}" for="quantite" />
+                        <p:inputText id="quantite" value="#{poulebean.pl.quantite}" title="#{myBundle.CreatePouleTitle_quantite}" required="true" requiredMessage="#{myBundle.CreatePouleRequiredMessage_quantite}"/>
+
+                        <p:outputLabel value="#{myBundle.CreatePouleLabel_type}" for="type" />
+                        
+
+                         <p:selectOneMenu id="type" value="#{poulebean.pl.type}" style="width: 82%" effect="explode" required="true" requiredMessage="vous devez choisir le type de poulet" >
+                            <f:selectItem  itemValue="" itemLabel="Choisir" />
+                            <f:selectItem  itemValue="Pondeuse" itemLabel="Pondeuse" />
+                            <f:selectItem  itemValue="Chair" itemLabel="Poulet de chair" />
+                        </p:selectOneMenu > 
+                        
+                        <p:outputLabel value="#{myBundle.CreatePouleLabel_personnelId}" for="personnelId" />
+                        <p:selectOneMenu id="personnelId" value="#{poulebean.personnelId}" required="true" requiredMessage="#{myBundle.EditPouleRequiredMessage_personnelId}" style="width: 82%" effect="explode" >
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{personnelbean.listpersonnel}"
+                                           var="personnelIdItem"
+                                           itemValue="#{personnelIdItem.id}"
+                                           itemLabel="#{personnelIdItem.nom.toString()} #{personnelIdItem.prenom.toString()}"
+                                           />
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{poulebean.savePoule}" value="#{myBundle.Save}" update="display,:PouleListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PouleCreateDialog);">
+                        <f:setPropertyActionListener target="#{poulebean.pl}" value="#{poulebean.pl}"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PouleCreateDialog.hide();"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

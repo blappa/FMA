@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PersonnelViewDlg" widgetVar="PersonnelViewDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.ViewPersonnelTitle}">
+
+            <h:form id="PersonnelViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{personnelbean.personnel != null}">
+
+
+                        <h:outputText value="#{myBundle.ViewPersonnelLabel_nom}"/>
+                        <h:outputText value="#{personnelbean.personnel.nom}" title="#{myBundle.ViewPersonnelTitle_nom}"/>
+
+
+                        <h:outputText value="#{myBundle.ViewPersonnelLabel_prenom}"/>
+                        <h:outputText value="#{personnelbean.personnel.prenom}" title="#{myBundle.ViewPersonnelTitle_prenom}"/>
+
+                        <h:outputText value="#{myBundle.ViewPersonnelLabel_sexe}"/>
+                        <h:outputText value="#{personnelbean.personnel.sexe}" title="#{myBundle.ViewPersonnelTitle_sexe}"/>
+
+                        <h:outputText value="#{myBundle.ViewPersonnelLabel_statut}"/>
+                        <h:outputText value="#{personnelbean.personnel.statut}" title="#{myBundle.ViewPersonnelTitle_statut}"/>
+
+                         <h:outputText value="#{myBundle.ViewPersonnelLabel_login}"/>
+                        <h:outputText value="#{personnelbean.personnel.login}" title="#{myBundle.ViewPersonnelTitle_login}"/>
+
+                        <h:outputText value="#{myBundle.ViewPersonnelLabel_datePayement}"/>
+                        <h:outputText value="#{personnelbean.personnel.date_payement}" title="#{myBundle.ViewPersonnelTitle_datePayement}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        
+                        <h:outputText value="#{myBundle.ViewPersonnelLabel_nombreJour}"/>
+                        <h:outputText value="#{personnelbean.personnel.nombre_jour}" title="#{myBundle.ViewPersonnelTitle_nombreJour}"/>
+
+                        
+                        <h:outputText value="#{myBundle.ViewPersonnelLabel_salaire}"/>
+                        <h:outputText value="#{personnelbean.personnel.salaire}" title="#{myBundle.ViewPersonnelTitle_salaire}"/>
+
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PersonnelViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

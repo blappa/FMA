@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="StockPonteEditDlg" widgetVar="StockPonteEditDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.EditStockPonteTitle}">
+
+            <h:form id="StockPonteEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{stockPontebean.stockPonte!= null}">
+
+                        <p:outputLabel value="#{myBundle.CreateStockPonteLabel_quantite}" for="quantite" />
+                        <p:inputText id="quantite" value="#{stockPontebean.stockPonte.quantite}" title="#{myBundle.CreateStockPonteTitle_quantite}" required="true" requiredMessage="#{myBundle.CreateStockPonteRequiredMessage_quantite}"/>
+                    
+                        <p:outputLabel value="#{myBundle.CreateDecesLabel_pouleId}" for="pouleId" />
+                        <p:selectOneMenu id="pouleId" value="#{stockPontebean.pouleId}" required="true" requiredMessage="le type de poulet est obligatoire" style="width: 82%">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{poulebean.lpoule}"
+                                           var="pouleIdItem"
+                                           itemValue="#{pouleIdItem.id}"
+                                           itemLabel="#{pouleIdItem.type.toString()} #{pouleIdItem.id.toString()}"
+                                           />
+                        </p:selectOneMenu>
+                        <p:panel visible="false">
+                            <p:inputText id="id" value="#{stockPontebean.stockPonte.id}" />
+                        </p:panel>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{stockPontebean. updateStockPonte}" value="#{myBundle.Save}" update="display,:StockPonteListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,StockPonteEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="StockPonteEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

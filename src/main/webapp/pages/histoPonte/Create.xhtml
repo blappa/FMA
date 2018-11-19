@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="HistoPonteCreateDlg" widgetVar="HistoPonteCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.CreateHistoPonteTitle}">
+
+            <h:form id="HistoPonteCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" >
+
+                        <p:outputLabel value="#{myBundle.CreateHistoPonteLabel_datePonte}" for="datePonte" />
+                        <p:calendar id="datePonte" pattern="MM/dd/yyyy" value="#{histoPontebeans.h.datePonte}" title="#{myBundle.EditHistoPonteTitle_datePonte}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateHistoPonteLabel_quantite}" for="quantite" />
+                        <p:inputText id="quantite" value="#{histoPontebeans.h.quantite}" title="#{myBundle.CreateHistoPonteTitle_quantite}" required="true" requiredMessage="#{myBundle.CreateHistoPonteRequiredMessage_quantite}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateHistoPonteLabel_pouleId}" for="pouleId" />
+                        <p:selectOneMenu id="pouleId" value="#{histoPontebeans.pouleId}" required="true" requiredMessage="#{myBundle.EditHistoPonteRequiredMessage_pouleId}" style="width: 82%">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{poulebean.lpoule}"
+                                           var="pouleIdItem"
+                                           itemValue="#{pouleIdItem.id}"
+                                           itemLabel="#{pouleIdItem.type.toString()} #{pouleIdItem.id.toString()}"
+                                           />
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{histoPontebeans.saveHistoPonte}" value="#{myBundle.Save}" update="display,:HistoPonteListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,HistoPonteCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="HistoPonteCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="StockAlimentListForm">
+        <div id="datalist">
+            <p:panel header="#{myBundle.ListStockAlimentTitle}">
+
+                <p:dataTable id="datalist" value="#{stockAlimentbean.listStockAliment}" var="item"
+                             selectionMode="single" selection="#{stockAlimentbean.stockAliment}"
+                             rowKey="#{item.id}"
+                             paginator="true"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30"
+                             emptyMessage="aucun element"
+                             rowIndexVar="index"
+                             rowStyleClass="#{item.quantite le 5 ? 'warning' : null}"
+                             >
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:outputText value="No"/>
+                        </f:facet>
+                        <h:outputText value="#{index+1}"/>
+                    </p:column>
+                    <p:column sortBy="#{item.quantite}" filterBy="#{item.quantite}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListStockAlimentTitle_quantite}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.quantite}"/>
+                    </p:column>
+                    <p:column sortBy="#{item.type}" filterBy="#{item.type}">
+                        <f:facet name="header">
+                            <h:outputText value="#{myBundle.ListStockAlimentTitle_type}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.type}"/>
+                    </p:column>
+                </p:dataTable>
+
+            </p:panel>
+        </div>
+        <div id="bouton">
+            <ul>
+                <ol><p:commandButton id="createButton" icon="ui-icon-plus"   value="#{myBundle.Create}" oncomplete="StockAlimentCreateDialog.show()"/></ol>
+                <ol> <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{myBundle.View}" update=":StockAlimentViewForm" oncomplete="StockAlimentViewDialog.show()" disabled="#{empty stockAlimentbean.stockAliment}"/></ol>
+                <ol> <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{myBundle.Edit}" update=":StockAlimentEditForm:display" oncomplete="StockAlimentEditDialog.show()" disabled="#{empty stockAlimentbean.stockAliment}"/></ol>
+                <ol>  <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{myBundle.Delete}" actionListener="#{stockAlimentbean.delete}" update=":growl,datalist" disabled="#{empty stockAlimentbean.stockAliment}"/></ol>
+            </ul>
+        </div>
+    </h:form>
+
+</ui:composition>

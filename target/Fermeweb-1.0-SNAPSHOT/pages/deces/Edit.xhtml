@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DecesEditDlg" widgetVar="DecesEditDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.EditDecesTitle}">
+
+            <h:form id="DecesEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{decesbean.deces != null}">
+
+                        <p:outputLabel value="#{myBundle.CreateDecesLabel_motif}" for="motif" />
+                        <p:inputText id="motif" value="#{decesbean.deces.motif}" title="#{myBundle.CreateDecesTitle_motif}" required="true"/>
+
+                        <p:outputLabel value="#{myBundle.CreateDecesLabel_dateDeces}" for="dateDeces" />
+                        <p:calendar id="dateDeces" pattern="MM/dd/yyyy" value="#{decesbean.deces.dateDeces}" title="#{myBundle.EditDecesTitle_dateDeces}"  showOn="button"/>
+
+                        <p:outputLabel value="nombre de poule" for="quantite" />
+                        <p:inputText id="quantite" value="#{decesbean.deces.quantite}" title="#{myBundle.CreateDecesTitle_quantite}" required="true" requiredMessage="#{myBundle.CreateDecesRequiredMessage_quantite}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateDecesLabel_pouleId}" for="pouleId" />
+                        <p:selectOneMenu id="pouleId" value="#{decesbean.pouleId}" required="true" requiredMessage="le type de poulet est obligatoire" style="width: 82%">
+                            <f:selectItem itemLabel="#{myBundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{poulebean.lpoule}"
+                                           var="pouleIdItem"
+                                           itemValue="#{pouleIdItem.id}"
+                                           itemLabel="#{pouleIdItem.type.toString()} #{pouleIdItem.id.toString()}"
+                                           />
+                        </p:selectOneMenu>
+                        <p:panel visible="false">
+                            <p:inputText id="id" value="#{decesbean.deces.id}" />
+                        </p:panel>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{decesbean.updateDeces}" value="#{myBundle.Save}" update="display,:DecesListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,DecesEditDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="DecesEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PouleViewDlg" widgetVar="PouleViewDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.ViewPouleTitle}">
+
+            <h:form id="PouleViewForm">
+
+                <h:panelGroup id="display" >
+                    <p:panelGrid columns="2" rendered="#{poulebean.pl != null}" >
+                        <h:outputText value="#{myBundle.ViewPouleLabel_daleLancement}"/>
+                        <h:outputText value="#{poulebean.pl.daleLancement}" title="#{myBundle.ViewPouleTitle_daleLancement}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewPouleLabel_debutPonte}"/>
+                        <h:outputText value="#{poulebean.pl.debutPonte}" title="#{myBundle.ViewPouleTitle_debutPonte}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewPouleLabel_quantite}"/>
+                        <h:outputText value="#{poulebean.pl.quantite}" title="#{myBundle.ViewPouleTitle_quantite}"/>
+
+                        <h:outputText value="#{myBundle.ViewPouleLabel_type}"/>
+                        <h:outputText value="#{poulebean.pl.type}" title="#{myBundle.ViewPouleTitle_type}"/>
+
+                        <h:outputText value="Nom du personnel"/>
+                        <h:outputText value="#{poulebean.pl.personnel.nom} #{pouleController.selected.personnel.prenom}"/>
+
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PouleViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd" 
+       xmlns:context="http://www.springframework.org/schema/context" >
+    
+    <!-- couches applicatives -->
+    
+    <bean id="IPouleDao" class="com.mycompany.fermeb.Idao.DaoImpl.PouleDaoImpl" />
+    <bean id="IHistoPonteDao" class="com.mycompany.fermeb.Idao.DaoImpl.HistoPonteDaoImpl" />
+    <bean id="IStockPonteDao" class="com.mycompany.fermeb.Idao.DaoImpl.StockPonteDaoImpl" />
+    <bean id="IVaccinationDao" class="com.mycompany.fermeb.Idao.DaoImpl.VaccinationDaoImpl" />
+    <bean id="IPersonnelDao" class="com.mycompany.fermeb.Idao.DaoImpl.PersonnelDaoImpl" />
+    <bean id="IHistoAlimentDao" class="com.mycompany.fermeb.Idao.DaoImpl.HistoAlimentDaoImpl" />
+    <bean id="IStockAlimentDao" class="com.mycompany.fermeb.Idao.DaoImpl.StockAlimentDaoImpl" />
+    <bean id="IDecesDao" class="com.mycompany.fermeb.Idao.DaoImpl.DecesDaoImpl" />
+     
+    <!-- couche metier -->
+    
+    
+    
+    <bean id="IServiceLancement" class="com.mycompany.fermeb.IserviceImpl.IServicePouleImpl" >
+        <property name="ipouleDao" ref="IPouleDao" />
+    </bean>
+    <bean id="IServiceStockAliment" class="com.mycompany.fermeb.IserviceImpl.IServiceStockAlimentImpl" >
+        <property name="iserStockAlimentDao" ref="IStockAlimentDao" />
+    </bean>
+    <!--    <bean id="IServicePonte" class="com.mycompany.fermeb.IserviceImpl.IServicePonteImpl" >
+        <property name="istockPonteDao" ref="IStockPonteDao" />
+        <property name="ihistoPonteDao" ref="IHistoPonteDao" />
+        <property name="ipouleDao" ref="IPouleDao" />
+    </bean>-->
+    
+    <bean id="IServicehistoPonte" class="com.mycompany.fermeb.IserviceImpl.IServiceHistoPonteImpl" >
+       
+        <property name="histopondao" ref="IHistoPonteDao" />
+       
+    </bean>
+    
+    <bean id="IServiceVaccination" class="com.mycompany.fermeb.IserviceImpl.IServiceVaccinationImpl" >
+        <property name="ivaccDao" ref="IVaccinationDao" />
+    </bean>
+    <bean id="IServicePersonnel" class="com.mycompany.fermeb.IserviceImpl.IServicePersonnelImpl" >
+        <property name="ipersDao" ref="IPersonnelDao" />
+    </bean>
+    <bean id="IServicePoule" class="com.mycompany.fermeb.IserviceImpl.IServicePouleImpl" >
+        <property name="ipouleDao" ref="IPouleDao" />
+    </bean>
+    <bean id="IServiceStockPonte" class="com.mycompany.fermeb.IserviceImpl.IServiceStockPonteImpl" >
+        <property name="iserStockPonteDao" ref="IStockPonteDao" />
+    </bean>
+    <bean id="IServiceHistoAliment" class="com.mycompany.fermeb.IserviceImpl.IServiceHistoAlimentImpl" >
+        <property name="iHistoAlimentDao" ref="IHistoAlimentDao" />
+        <property name="istockAlimentDao" ref="IStockAlimentDao" />
+    </bean>
+    
+    <bean id="IServiceDeces" class="com.mycompany.fermeb.IserviceImpl.IServiceDecesImpl" >
+        <property name="idecesdao" ref="IDecesDao" />
+        <property name="ipouldao" ref="IPouleDao" />
+    </bean>
+    <!-- la source de donnéees DBCP -->
+    
+   <!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="username" value="root"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="password" value=""/>
+        <property name="url" value="jdbc:mysql://localhost:3306/gestionfermDB?zeroDateTimeBehavior=convertToNull"/>
+    </bean>-->
+    
+     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+       
+        <property name="username" value="root"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="password" value="root"/>
+        <property name="url" value="jdbc:mysql://localhost/gestionfermDB"/>
+    
+    </bean>
+    
+    <!-- couche de persistance JPA -->
+    
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="jpaVendorAdapter">
+        
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                
+                <property name="showSql" value="true" />  
+              
+                <property name="databasePlatform" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+                <property name="generateDdl" value="true" />
+            </bean>
+        </property>
+
+        <property name="loadTimeWeaver">
+            <bean class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
+
+        </property>
+    </bean>
+    
+    <!-- le gestionnaire de transactions -->
+    
+    <tx:annotation-driven transaction-manager="txManager" />
+    <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+    
+    <!-- traduction des exceptions -->
+    
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+    
+    <!-- annotations de persistance -->
+    
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+    
+</beans>

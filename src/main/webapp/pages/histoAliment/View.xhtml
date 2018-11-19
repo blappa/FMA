@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="HistoAlimentViewDlg" widgetVar="HistoAlimentViewDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.ViewHistoAlimentTitle}">
+
+            <h:form id="HistoAlimentViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{histoAlimentController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewHistoAlimentLabel_date}"/>
+                        <h:outputText value="#{histoAlimentbeans.histoAliment.date}" title="#{myBundle.ViewHistoAlimentTitle_date}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewHistoAlimentLabel_quantite}"/>
+                        <h:outputText value="#{histoAlimentbeans.histoAliment.quantite}" title="#{myBundle.ViewHistoAlimentTitle_quantite}"/>
+
+                        <h:outputText value="#{myBundle.ViewHistoAlimentLabel_pouleId}"/>
+                        <h:outputText value="#{histoAlimentbeans.histoAliment.poule.type} #{histoAlimentbeans.histoAliment.poule.id}"/>
+
+                        <h:outputText value="Nom de l'aliment"/>
+                        <h:outputText value="#{histoAlimentbeans.histoAliment.stockAliment.type}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="HistoAlimentViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

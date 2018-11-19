@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PersonnelCreateDlg" widgetVar="PersonnelCreateDialog" modal="true" resizable="false" appendToBody="true" header="#{myBundle.CreatePersonnelTitle}"
+                  showEffect="puff"    hideEffect="clip">
+
+            <h:form id="PersonnelCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+                        <p:outputLabel value="#{myBundle.CreatePersonnelLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{personnelbean.personnel.nom}" title="#{myBundle.CreatePersonnelTitle_nom}" />
+
+                        <p:outputLabel value="#{myBundle.CreatePersonnelLabel_prenom}" for="prenom" />
+                        <p:inputText id="prenom" value="#{personnelbean.personnel.prenom}" title="#{myBundle.CreatePersonnelTitle_prenom}" />
+
+
+                        <p:outputLabel value="#{myBundle.CreatePersonnelLabel_sexe}" for="sexe" />
+                        <p:selectOneMenu id="sexe" value="#{personnelbean.personnel.sexe}" style="width: 82%" effect="explode">
+                            <f:selectItem  itemValue="" itemLabel="Choisir" />
+                            <f:selectItem  itemValue="M" itemLabel="Masculin" />
+                            <f:selectItem  itemValue="F" itemLabel="Feminin" />
+                        </p:selectOneMenu >
+
+                      <p:outputLabel value="#{myBundle.CreatePersonnelLabel_statut}" for="statut" />
+                      <p:selectOneMenu id="statut" value="#{personnelbean.personnel.statut}" style="width: 82%" effect="explode">
+                            <f:selectItem  itemValue="" itemLabel="Choisir" />
+                            <f:selectItem  itemValue="Secretaire" itemLabel="Secretaire" />
+                            <f:selectItem  itemValue="Administrateur" itemLabel="Admin" />
+                        </p:selectOneMenu >
+                        
+                        <p:outputLabel value="#{myBundle.CreatePersonnelLabel_datePayement}" for="datePayement" />
+                        <p:calendar id="datePayement" pattern="MM/dd/yyyy" value="#{personnelbean.personnel.date_payement}" title="#{myBundle.EditPersonnelTitle_datePayement}"  showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreatePersonnelLabel_login}" for="login" />
+                        <p:inputText id="login" value="#{personnelbean.personnel.login}" title="#{myBundle.CreatePersonnelTitle_login}" />
+
+                        <p:outputLabel value="#{myBundle.CreatePersonnelLabel_nombreJour}" for="nombreJour" />
+                        <p:inputText id="nombreJour" value="#{personnelbean.personnel.nombre_jour}" title="#{myBundle.CreatePersonnelTitle_nombreJour}" required="true" requiredMessage="#{myBundle.CreatePersonnelRequiredMessage_nombreJour}"/>
+
+                        <p:outputLabel value="#{myBundle.CreatePersonnelLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{personnelbean.personnel.password}" title="#{myBundle.CreatePersonnelTitle_password}" />
+
+                        <p:outputLabel value="#{myBundle.CreatePersonnelLabel_salaire}" for="salaire" />
+                        <p:inputText id="salaire" value="#{personnelbean.personnel.salaire}" title="#{myBundle.CreatePersonnelTitle_salaire}" required="true" requiredMessage="#{myBundle.CreatePersonnelRequiredMessage_salaire}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{personnelbean.savePersonnel}" value="#{myBundle.Save}" update="display,:PersonnelListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PersonnelCreateDialog);"/>
+                    <p:commandButton value="#{myBundle.Cancel}" onclick="PersonnelCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
